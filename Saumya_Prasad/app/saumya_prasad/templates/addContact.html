@@ -16,11 +16,11 @@
     <form method="POST" class="custom-form">
       {% csrf_token %}
         <div class="custom-form-group">
-            <label for="contact_name" class="custom-label">Name</label>
+            <label for="contact_name" class="custom-label">Enter your Name</label>
             <input type="text" class="custom-input" id="contact_name" name="contact_name" required>
         </div>
         <div class="custom-form-group">
-          <label for="contact_email" class="custom-label">Email address</label>
+          <label for="contact_email" class="custom-label">Enter your Email ID</label>
           <input type="email" class="custom-input" id="contact_email" name="contact_email" aria-describedby="emailHelp" required>
           <div id="emailHelp" class="custom-form-text"></div>
         </div>
