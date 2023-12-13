@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    body {
+        font-family: 'Lato', sans-serif;
+        background-color: #f5f5f5;
+        margin: 0;
+        padding: 0;
+        color: #333;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+
+    h1 {
+        text-align: center;
+        color: #6c757d;
+        margin-bottom: 30px;
+        font-size: 2em;
+    }
+
+    .alert {
+        background-color: #3498db;
+        color: #fff;
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    form {
+        width: 80%;
+        max-width: 400px;
+        margin: auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+    }
+
+    label {
+        margin-bottom: 10px;
+        color: #555;
+        font-weight: bold;
+        display: block;
+    }
+
+    .form-control {
+        padding: 10px;
+        margin-bottom: 20px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .btn-update, .btn-cancel {
+        display: inline-block;
+        padding: 10px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: bold;
+        cursor: pointer;
+        width: 48%;
+        text-align: center;
+    }
+
+    .btn-update {
+        background-color: #2980b9;
+        color: #fff;
+        border: none;
+    }
+
+    .btn-update:hover {
+        background-color: #1f6692;
+    }
+
+    .btn-cancel {
+        background-color: #333;
+        color: #fff;
+        border: 2px solid #333;
+    }
+
+    .btn-cancel:hover {
+        background-color: #555;
+    }
+</style>
+
+<h1>Modify Contact</h1>
+
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert">{{ message }}</div>
+    {% endfor %}
+{% endif %}
+
+<div>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="contact_name">Name</label>
+        <input type="text" class="form-control" id="contact_name" name="contact_name" value="{{curr_contact.contact_name}}" required>
+
+        <label for="contact_email">Email address</label>
+        <input type="email" class="form-control" id="contact_email" name="contact_email" aria-describedby="emailHelp" value="{{curr_contact.contact_email}}" required>
+
+        <label for="contact_notes">Notes</label>
+        <input type="text" class="form-control" name="contact_notes" id="contact_notes" value="{{curr_contact.contact_notes}}" required>
+
+        <input type="text" name="created_time" id="created_time" value="{{ created_time }}" hidden>
+
+        <button type="submit" class="btn-update">Update Contact</button>
+        <a href="{% url 'home' %}" class="btn-cancel">Cancel</a>
+    </form>
+</div>
+{% endblock %}
