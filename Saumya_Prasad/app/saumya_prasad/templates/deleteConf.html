@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f3f3f3;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            color: #6c757d;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+
+        .alert {
+            background-color: #5bc0de;
+            color: #fff;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        h5 {
+            text-align: left;
+            color: #5cb85c;
+            margin-bottom: 15px;
+        }
+
+        .btn-danger,
+        .btn-secondary {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            color: #fff;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+
+        .btn-secondary {
+            background-color: #6c757d;
+            color: #fff;
+        }
+
+        .btn-secondary:hover {
+            background-color: #5a6268;
+        }
+    </style>
+
+    <div class="container">
+        <h1>Confirm Delete</h1>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+
+        <div>
+            <a href="{% url 'delete' curr_contact.id %}" class="btn-danger">Delete</a>
+            <a href="{% url 'home' %}" class="btn-secondary">Home</a>
+        </div>
+    </div>
+{% endblock %}
