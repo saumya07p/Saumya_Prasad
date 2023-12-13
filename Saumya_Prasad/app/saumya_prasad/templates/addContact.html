@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="custom-container">
+    <h1 class="custom-heading">Create a Contact</h1>
+   
+    {% if messages %}
+      {% for message in messages %}
+      <div class="custom-alert">
+        <strong>{{ message }}</strong>
+        <button type="button" class="custom-close-btn" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endfor %}
+    {% endif %}
+   
+    <form method="POST" class="custom-form">
+      {% csrf_token %}
+        <div class="custom-form-group">
+            <label for="contact_name" class="custom-label">Name</label>
+            <input type="text" class="custom-input" id="contact_name" name="contact_name" required>
+        </div>
+        <div class="custom-form-group">
+          <label for="contact_email" class="custom-label">Email address</label>
+          <input type="email" class="custom-input" id="contact_email" name="contact_email" aria-describedby="emailHelp" required>
+          <div id="emailHelp" class="custom-form-text"></div>
+        </div>
+       <div class="custom-form-group">
+            <label for="contact_notes" class="custom-label">Notes</label>
+            <input type="text" class="custom-input"  id="contact_notes" name="contact_notes" minlength="1" required>
+        </div>
+        <input type="text" name="created_time" id="created_time" value="{{ created_time }}" hidden>
+        <button type="submit" class="custom-btn">Create Contact</button>
+        <a href="{% url 'home' %}" class="custom-btn custom-cancel-btn">Cancel</a>
+      </form>
+</div>
+
+<style>
+  
+  .custom-container {
+    text-align: center;
+    color: #333;
+    margin: 50px auto;
+    max-width: 600px;
+  }
+
+  .custom-heading {
+    color: #167D7F;
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  .custom-alert {
+    background-color: #ffeaa7;
+    color: #d35400;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    position: relative;
+  }
+
+  .custom-close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  .custom-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .custom-form-group {
+    margin-bottom: 20px;
+    width: 100%;
+  }
+
+  .custom-label {
+    font-size: 18px;
+    margin-bottom: 5px;
+    display: block;
+    color: #333;
+  }
+
+  .custom-input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+
+  .custom-form-text {
+    font-size: 14px;
+    color: #888;
+  }
+
+  .custom-btn {
+    background-color: #167D7F;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s;
+  }
+
+  .custom-cancel-btn {
+    background-color: white;
+    color: #333;
+    border: 2px solid #333;
+    margin-left: 10px;
+  }
+
+  .custom-btn:hover {
+    background-color: #125e62;
+  }
+</style>
+
+{% endblock %}
